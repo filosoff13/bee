@@ -2,10 +2,6 @@
     require_once 'class/TableRows.php';
     require_once 'class/pic.php';
     //соединимся с БД
-    /*define('DB_HOST', 'mysql.zzz.com.ua');
-    define('DB_USER', 'fillip');
-    define('DB_PASSWORD', 'Dded633');
-    define('DB_NAME', 'fillip');*/
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');
     define('DB_PASSWORD', '');
