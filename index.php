@@ -13,8 +13,7 @@
     }
     $pdo = null;
 
-    $orderBy = array('name', 'email', 'sum');
-    $order = 'name';
+
 
 if (isset($_POST['log_in'])) {
     try {$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
@@ -40,22 +39,6 @@ if (isset($_POST['log_in'])) {
         echo "Добро пожаловать, $login";
         } else{echo 'Не верный логин и/или пароль';
         }
-}
-
-if (isset($_POST['Save'])) {
-    try {$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
-    
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //$pic = new Pic:::Check();
-
-    $query = "INSERT INTO `tasks` VALUES('', '$name', '$email', '$sum', '$file', '')";
-    $res = $pdo->exec($query);
-    //echo "$res";
-
-        } catch (Exception $e) {
-    echo $query . "<br>" . $e->getMessage();
-    }
-    $pdo = null;
 }
 
 ?>
@@ -145,10 +128,15 @@ if (isset($_POST['Save'])) {
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 //выполним сортировку
+                $orderBy = array('name', 'email', 'sum');
+                $order = 'name';
                 if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
 
+
                 $order = $_GET['orderBy'];
-                $query = 'SELECT `name`, `email`, `sum`, `file` FROM tasks ORDER BY '.$order;}
+                $query = "SELECT `name`, `email`, `sum`, `file` FROM `tasks` ORDER BY ".$order;
+                }else{$query = "SELECT `name`, `email`, `sum`, `file` FROM `tasks`";
+                }
                 //echo "$query";
                 $res = $pdo->prepare($query);
 
