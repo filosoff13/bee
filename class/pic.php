@@ -18,7 +18,7 @@ class Pic
             $type = getimagesize($_FILES['file']['tmp_name']);
             if ($type && ($type['mime'] != 'image/png' || 
                 $type['mime'] != 'image/jpg' || $type['mime'] != 'image/jpeg')) {
-            if ($_FILES['file']['size'] < 1024 * 1000) {
+            if ($_FILES['file']['size'] < 320 * 240) {
                 $upload = 'images/'.$_FILES['file']['name'];
             if (move_uploaded_file($_FILES['file']['tmp_name'], $upload)) echo 'Файл успешно загружен!';
                 else echo 'Ошибка при загрузке файла';
